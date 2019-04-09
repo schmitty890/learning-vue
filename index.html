@@ -10,9 +10,9 @@
     <form class="mt-5">
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" v-bind:value="email" class="form-control form-control-lg">
+        <input type="email" v-model="email" class="form-control form-control-lg">
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" v-on:click="process" class="btn btn-primary">Submit</button>
     </form>
   </div>
 </div>
@@ -21,10 +21,16 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 <script type="text/javascript">
-  new Vue({
+  var vm = new Vue({
     el: '#app',
     data: {
       email: 'blah@gmail.com'
+    },
+    methods: {
+      process: function(e) {
+        e.preventDefault();
+        console.log('process!' + this.email);
+      }
     }
   });
 </script>
