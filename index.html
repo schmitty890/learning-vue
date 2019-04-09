@@ -34,7 +34,8 @@
     data: {
       email: 'blah@gmail.com',
       submitted: false,
-      city: ''
+      city: '',
+      averageTemps: []
     },
     created: function() {
       this.fetchWeather();
@@ -54,7 +55,7 @@
           .then(function(res) {
             console.log(res);
             vm.city = res.data.city.name;
-            console.log(vm);
+            vm.averageTemps = res.data.list;
           });        
       }
     }
