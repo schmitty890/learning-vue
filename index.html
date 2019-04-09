@@ -3,36 +3,59 @@
 <head>
   <title>vue</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+  <style type="text/css">
+    [v-cloak] {
+      display: none;
+    }
+  </style>
 </head>
 <body>
 <div id="app">
   <div class="container">
-    <form class="mt-5">
+    <div>{{city}}</div>
+    <form v-if="!submitted" class="mt-5">
       <div class="form-group">
         <label for="email">Email</label>
         <input type="email" v-model="email" class="form-control form-control-lg">
       </div>
       <button type="submit" @click="process" class="btn btn-primary">Submit</button>
     </form>
+    <h2 v-else="submitted" v-cloak class="mt-5">Thank you for your submission.</h2>
   </div>
 </div>
 
 <!-- development version, includes helpful console warnings -->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 
 <script type="text/javascript">
+  var zipcodeWeather = '27606';
+  var APIKey = '3bce2d04045dd38cbdadc38a931790ac';
+  var url = 'https://api.openweathermap.org/data/2.5/forecast?zip=' + zipcodeWeather + '&appid=' + APIKey;
+  // see data in browser
+  // https://api.openweathermap.org/data/2.5/forecast?zip=27606&appid=3bce2d04045dd38cbdadc38a931790ac
+
   var vm = new Vue({
     el: '#app',
     data: {
-      email: 'blah@gmail.com'
+      email: 'blah@gmail.com',
+      submitted: false,
+      city: ''
     },
     methods: {
       process: function(e) {
         e.preventDefault();
-        console.log('process!' + this.email);
+        this.submitted = true;
       }
     }
   });
+
+  axios.get(url)
+    .then(function(res) {
+      console.log(res);
+      vm.city = res.data.city.name;
+      console.log(vm);
+    });
 </script>
 </body>
 </html>
