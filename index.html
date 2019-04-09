@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>vue</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+</head>
+<body>
+<div id="app">
+  <div class="container">
+    <form class="mt-5">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" v-bind:value="email" class="form-control form-control-lg">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+
+<!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script type="text/javascript">
+  new Vue({
+    el: '#app',
+    data: {
+      email: 'blah@gmail.com'
+    }
+  });
+</script>
+</body>
+</html>
