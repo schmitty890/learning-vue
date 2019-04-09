@@ -13,6 +13,9 @@
 <div id="app">
   <div class="container">
     <div>{{city}}</div>
+    <ul v-for="a in averageTemps">
+      <li>{{a.main.temp}}</li>
+    </ul>
     <form v-if="!submitted" class="mt-5">
       <div class="form-group">
         <label for="email">Email</label>
@@ -48,7 +51,7 @@
       fetchWeather: function() {
         var zipcodeWeather = '27606';
         var APIKey = '3bce2d04045dd38cbdadc38a931790ac';
-        var url = 'https://api.openweathermap.org/data/2.5/forecast?zip=' + zipcodeWeather + '&appid=' + APIKey;
+        var url = 'https://api.openweathermap.org/data/2.5/forecast?zip=' + zipcodeWeather + '&units=imperial&appid=' + APIKey;
         // see data in browser
         // https://api.openweathermap.org/data/2.5/forecast?zip=27606&appid=3bce2d04045dd38cbdadc38a931790ac
         axios.get(url)
