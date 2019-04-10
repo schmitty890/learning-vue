@@ -13,8 +13,8 @@
 <div id="app">
   <div class="container">
     <div>{{city}}</div>
-    <ul v-for="a in averageTemps">
-      <li>{{a.main.temp}}</li>
+    <ul>
+      <li v-for="a in averageTemps">{{a.main.temp}}</li>
     </ul>
     <form v-if="!submitted" class="mt-5">
       <div class="form-group">
